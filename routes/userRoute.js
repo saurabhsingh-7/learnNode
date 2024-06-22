@@ -5,6 +5,7 @@ const router = express();
 const path = require('path');
 const multer  = require('multer');
 
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, path.join(__dirname, '../public/images'));
@@ -16,5 +17,8 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+const userController = require('../controllers/userController');
+
+router.post('/register', upload.single('image'), userController.register);
 
  module.exports = router;

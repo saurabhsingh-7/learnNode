@@ -20,8 +20,8 @@ const userSchema = new mongoose.Schema({
    
    
     is_verified: {
-        type: Boolean,
-        required: true
+        type: Number,
+        default: 0
     },
     image: {
         type: String,
