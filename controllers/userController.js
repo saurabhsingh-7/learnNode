@@ -2,6 +2,8 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const {validationResult} = require('express-validator');
 
+const mailer = require('../helpers/mailer');
+
 const register = async (req, res) => {    
    try{
     const errors = validationResult(req);
@@ -32,6 +34,10 @@ if(!errors.isEmpty()){
         image : 'images/'+req.file.filename
     });
      const userData = await user.save();
+
+     const msg = '<p> hi , '+name+' , Please <a href = "http://localhost:3000/mail-verification?id='+userData._id+'"> verify</a> your mail </p>';
+     const subject = "Welcome to our website";
+     mailer.sendMail(email, 'Mail Verification', msg);
      return res.status(200).json({
         success: true,
         message: 'User registered successfully',

@@ -19,5 +19,5 @@ exports.registor_validator = [
             minSymbols: 1
         }
     ),
-    check('image', 'Image should be of type jpeg or png').isMimeType(['image/jpeg', 'image/png'])   
+    check('image', 'Image should be of type jpeg or png').isMimeType(['image/jpeg', 'image/png','image/jpg'])   
 ];
